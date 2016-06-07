@@ -2,6 +2,15 @@
 
 clear
 
+#########################################
+#### the100.io Raid Completions v2.2 ####
+####  Scrapes member list from group ####
+####   Calls Bungie API to get grim  ####
+#### 	   the100:  /u/L0r3          ####
+####       Reddit:  /u/L0r3_Titan    ####
+####       Twitter: @L0r3_Titan      ####
+#########################################
+
 #### NUMBER AND NAME OF A GRIM CARD ####
 currentCard='603010,raidCompletions'
 
@@ -113,11 +122,13 @@ grimStatOne=`echo "$grimMinion" | grep -o 'statNumber":1.*' | sed 's/displayValu
 }
 
 #### LOOP THOUGH LIST OF MEMBERS, RUN FUNCTIONS TO GET BUNGIE GRIM DATA ####
+let groupRaids='0'
 let playerCnt='0'
 while read 'player'; do
 	funcMemID
 	funcGetGrimData
-	echo "$player: $grimName $grimStatOne"
+	echo "$player: $grimStatOne $grimName kills"
+	let groupRaids=groupRaids+$grimStatOne
 	let playerCnt=playerCnt+1
 	grimArr[$playerCnt]="$grimStatOne,$player"
 done < "$playerList"
@@ -129,6 +140,8 @@ echo
 grimScoresSort=( $(arrSort) )
 printf '%s\n' "${grimScoresSort[@]}"
 
+echo
+echo "Group $the100group: $groupRaids $grimName completions"
+echo
 
 exit
-
