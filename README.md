@@ -11,8 +11,6 @@ Next it will call the Bungie API and get the raid completions each member<br>
 Beta<br>
 No error handling yet<br>
 Works for me where expected<br>
-Last bit of core work is to automate number of pages to scrape for users<br>
-Its hard coded at '9' for now<br>
 Find your group number in the URL when viewing your groups the100 page<br>
 https://www.the100.io/groups/1412<br>
 
@@ -23,6 +21,7 @@ Launch it with the required command line arguments of group ID:<br>
 
 # REQUIRED FILES
 apiKey.sh: Get a Bungie API key and insert in file (https://www.bungie.net/en/User/API)<br>
+hundredMembers.sh: This contains a function that scrapes list of members from a 100 group<br>
 raidCompletions.sh: Primary script<br>
 
 # ABOUT apiKey.sh #
