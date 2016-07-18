@@ -3,7 +3,7 @@
 clear
 
 #########################################
-#### the100.io Raid Completions v2.5 ####
+#### the100.io Raid Completions v2.6 ####
 ####  Scrapes member list from group ####
 ####   Calls Bungie API to get grim  ####
 #### 	   the100:  /u/L0r3          ####
@@ -37,7 +37,7 @@ funcMemID ()
 sleep 1
 getUser=`curl -s -X GET \
 -H "Content-Type: application/json" -H "Accept: application/xml" -H "$authKey" \
-"http://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/$selectedAccountType/$player/"`
+"https://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/$selectedAccountType/$player/"`
 memID=`echo "$getUser" | grep -o 'membershipId.*' | cut -c 16- | sed 's/displayName.*[^displayName]*//' | rev | cut -c 4- | rev`
 }
 
